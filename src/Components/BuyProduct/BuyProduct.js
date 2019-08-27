@@ -62,12 +62,10 @@ export class BuyProduct extends Component {
                     if (response.status === 200 && response.data.status === "SUCCESS") {
                         console.log(response.data)
                         alert(response.data.message)
-                        // this.props.history.push({
-                        //     pathname: '/admindashboard',
-                        //     search: '?query=dashboard',
-                        //     //state:{data: response.data}
-                        //     state: { data: response.data.roleId }
-                        // })
+
+                        this.props.history.push({
+                            pathname: '/productDetails',
+                        })
                     } else {
                     }
                 }).catch(err=>{
@@ -86,7 +84,7 @@ export class BuyProduct extends Component {
         //     }
         // }
         return new Promise((resolve, reject) => {
-            axios.post(`${url.urlCharan}/buy`, product)
+            axios.post(`${url.url}/buy`, product)
                 .then(res => {
                     resolve(res)
                 }).catch(err => {
@@ -112,6 +110,10 @@ export class BuyProduct extends Component {
             isValid = false;
             errors.emailIdError = 'Email Id should be in proper format'
         }
+        if(this.state.emailId===''||this.state.name===''||this.state.pan===''||this.state.mobileNo===''){
+            isValid = false;
+            errors.emailIdError = 'Name, emailId , PAN and mobile number are mandatory fields'
+        }
         // if (this.state.age < 18) {
         // } else {
         //     isValid = false;
@@ -130,8 +132,9 @@ export class BuyProduct extends Component {
         let { t } = this.props;
         return (
             <div>
+               
                     <h4>Buy</h4>
-                <form className="loginform">
+                <form className="buyform">
                     <div >
                         <span className="pull-right text-danger"><small>{this.state.emailIdError}</small></span>
                         <div className="labelinput">
@@ -197,7 +200,7 @@ export class BuyProduct extends Component {
                     <div >
                         <span className="pull-right text-danger"><small>{this.state.panError}</small></span>
                         <div className="labelinput">
-                        <label htmlFor="mobileNo">PAN</label>&nbsp;&nbsp;
+                        <label htmlFor="pan">PAN</label>&nbsp;&nbsp;
                         <input
                             type="text"
                             id="pan"
@@ -209,7 +212,9 @@ export class BuyProduct extends Component {
                     <br></br>
                     <button id="submit" type="submit" className="but" onClick={this.handleBuy}>Buy</button>
 
+                    
                 </form>
+                
             </div>
         )
     }

@@ -8,7 +8,7 @@ export class Analysis extends Component {
         super(props)
         this.state = {
             analysisList:[],
-            selectAnalysis: ''
+            selectAnalysis: 'day'
         }
         this.onChange=this.onChange.bind(this)
     }
@@ -16,20 +16,15 @@ export class Analysis extends Component {
         console.log("Inside on change", e.target.id, e.target.value)
         this.setState({ [e.target.id]: e.target.value }, () => {
             // localStorage.setItem("data",this.state.emailId)
-            axios.get(`${url.urlPradeep}/analysis/${this.state.selectAnalysis}`)
+            axios.get(`${url.url}/analysis/${this.state.selectAnalysis}`)
             .then(res => {
-                console.log("res inside component did mount get all stocks", res)
-                if (res.status === 200 && res.data.status === "SUCCESS") {
-                    console.log("inside success")
+                console.log("res inside selectanalysis", res)
                         this.setState({
                             analysisList: res.data
                         }, () => {
                             console.log("all stock after set state", this.state.analysisList)
                         });
                     
-                } else {
-    
-                }
             })
         });
        
@@ -37,25 +32,22 @@ export class Analysis extends Component {
 
     componentDidMount() {
         console.log(this.state)
-        axios.get(`${url.urlPradeep}/analysis/day`)
+        axios.get(`${url.url}/analysis/day`)
             .then(res => {
-                console.log("res inside component did mount get all stocks", res)
-                if (res.status === 200 && res.data.status === "SUCCESS") {
-                    console.log("inside success")
+                console.log("res inside component did mount get all day data", res)
                     this.setState({
                         analysisList: res.data
                     }, () => {
                         console.log("all stock after set state", this.state.analysisList)
                     });
-                } else {
-
-                }
             })
     }
     render() {
         return (
             <div>
-                <h2>Product purchase analysis</h2>
+                <h4>Product sale trends</h4>
+                <br></br>
+                <h5>This {this.state.selectAnalysis}'s Analysis</h5>
                 <br></br>
                 <select id="selectAnalysis" onChange={this.onChange}>
                     <option value="day">Today</option>
@@ -67,12 +59,12 @@ export class Analysis extends Component {
                 
                     <BarChart width={600} height={300} data={this.state.analysisList}
                         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                        <XAxis dataKey="stockName" />
-                        <YAxis dataKey="crisilRating" />
-                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="productName" />
+                        <YAxis dataKey="count" />
+                        <CartesianGrid strokeDasharray="6 6" />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="crisilRating" stackId="a" fill="#8884d8" />
+                        <Bar dataKey="count" stackId="a" fill="#8884d8" />
                         {/* <Bar dataKey="crisilRating" stackId="a" fill="#ffffff" /> */}
 
                     </BarChart>

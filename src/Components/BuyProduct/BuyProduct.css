@@ -1,5 +1,5 @@
 
-.loginform{
+.buyform{
     position: relative;
     left:35%;
     width: 30%;
@@ -11,15 +11,15 @@
     padding-top: 5px;
     padding-bottom:5px;
 }
-.loginform input{
+.buyform input{
+    width: 70%;
+    /* padding: 10px; */
+}
+.buyform textarea{
     width: 65%;
     /* padding: 10px; */
 }
-.loginform textarea{
-    width: 65%;
-    /* padding: 10px; */
-}
-.loginform label{
+.buyform label{
     width: 25%;
     /* padding:10px; */
 }

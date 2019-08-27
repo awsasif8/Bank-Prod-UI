@@ -38,13 +38,13 @@ class FileUpload extends React.Component {
                     'content-type': 'multipart/form-data'
                 }
             }
-            axios.post(`${url.urlDhana}/uploadfile`, formData, config)
+            axios.post(`${url.url}/uploadfile`, formData, config)
                 .then((res) => {
                     console.log(res)
                     return resolve(res)
                 })
                 .catch(err=>{
-                    alert(`Error in uploading file err`)
+                    alert(`Error in uploading file ${err}`)
                 })
         })
 
@@ -52,7 +52,7 @@ class FileUpload extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
+            <form id="uploadform" onSubmit={this.onFormSubmit}>
                 <br></br>
                 <h4>Upload Product Catalogue</h4>
                 <br></br>

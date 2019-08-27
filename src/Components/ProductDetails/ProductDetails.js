@@ -37,9 +37,15 @@ export class ProductDetails extends Component {
         }
         this.onClickAccordion = this.onClickAccordion.bind(this)
         this.handleBuy = this.handleBuy.bind(this)
+        this.handleClickAnalysis = this.handleClickAnalysis.bind(this)
         // this.onFormSubmit = this.onFormSubmit.bind(this)
         // this.onChange = this.onChange.bind(this)
         // this.fileUpload = this.fileUpload.bind(this)
+    }
+    handleClickAnalysis(e){
+        e.preventDefault();
+        this.props.history.push('/analysis')
+
     }
     componentDidMount() {
         axios.get(`${url.url}/productnames`)
@@ -139,6 +145,8 @@ export class ProductDetails extends Component {
        
         return (
             <div >
+                 <button className="analysisbut"onClick={this.handleClickAnalysis}>View Sale Analysis</button>
+                 <br></br><br></br>
                 <h2>
                     Product Details
                 </h2>
