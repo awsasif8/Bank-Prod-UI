@@ -1,0 +1,24 @@
+
+.loginform{
+    position: relative;
+    left:35%;
+    width: 30%;
+    text-align: center;
+    font-weight: bold
+}
+.but{
+    background-color: orangered;
+    height: 30px;
+    width: 90px;
+    color: white;
+}
+.labelinput label{
+    
+    display: inline-block;
+
+}
+.labelinput input{
+  
+    display: inline-block;
+ 
+}
