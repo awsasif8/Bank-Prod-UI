@@ -59,12 +59,12 @@ export class ProductDetails extends Component {
 
             })
     }
-    handleBuy(e) {
+    handleBuy(e, item) {
 
         this.props.history.push({
             pathname: '/buyProduct',
             search: '?query=productBuy',
-            state: { productId: this.state.productId }
+            state: { productId: item.productId }
         })
         // axios.post(`${url.url}/order`, stock)
         //     .then(res => {
@@ -115,7 +115,7 @@ export class ProductDetails extends Component {
             return (
                 <div>
                     {item.productDescription}
-                    <p className="price">Product Price: {item.productPrice} &nbsp;&nbsp; <Button onClick={this.handleBuy}>Buy</Button> </p>
+                    <p className="price">Product Price: {item.productPrice} &nbsp;&nbsp; <Button onClick={(e)=>this.handleBuy(e,item)}>Buy</Button> </p>
                 </div>
             )
         }, this);

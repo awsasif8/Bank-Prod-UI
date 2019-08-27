@@ -9,17 +9,29 @@ export class BuyProduct extends Component {
         super(props);
         this.state = {
             emailId: '',
+            emailIdError:'',
             age: '',
+            ageError:'',
             productId: '',
-            phone: '',
+            productIdError:'',
+            mobileNo: '',
+            mobileNoError:'',
             address: '',
+            addressError:'',
             name:'',
+            nameError:'',
             pan:'',
-            mobileNo:''
-
+            panError:''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleBuy=this.handleBuy.bind(this);
+    }
+    componentDidMount(){
+       let productId=this.props.location.state.productId? this.props.location.state.productId: ''
+        this.setState({
+            productId: productId
+        })
+        console.log("Product id after set state", productId)
     }
     handleChange(e) {
         this.setState({ [e.target.id]: e.target.value }, () => {
@@ -33,33 +45,39 @@ export class BuyProduct extends Component {
         this.validate().then((res) => {
             console.log("res", res)
             if (res) {
-                const { emailId, password } = this.state
-                const user = {
-                    emailId: emailId,
-                    password: password
+                const { emailId, age, pan, address,mobileNo,name, productId } = this.state
+                const product = {
+                    productId: productId ,
+                    name: name,
+                    age: parseInt(age),
+                    email: emailId,
+                    phone: mobileNo,
+                    address:address
                 };
-                console.log(this.props)
-                localStorage.setItem("userId", '1234')
-                this.props.validateUser(true);
-                this.props.history.push('/home')
-                // this.getData(user).then((response) => {
-                //     if (response.status === 200 && response.data.status === "SUCCESS") {
-                //         this.props.validateUser(true);
-                //         localStorage.setItem("userId",response.data.userId)
-                //         window.location.replace('http://localhost:3000/#/home')
-                //         // this.props.history.push({
-                //         //     pathname: '/admindashboard',
-                //         //     search: '?query=dashboard',
-                //         //     //state:{data: response.data}
-                //         //     state: { data: response.data.roleId }
-                //         // })
-                //     }
-                // })
+                console.log("product details for buy", product)
+                // localStorage.setItem("userId", '1234')
+                // this.props.validateUser(true);
+                // this.props.history.push('/home')
+                this.getData(product).then((response) => {
+                    if (response.status === 200 && response.data.status === "SUCCESS") {
+                        console.log(response.data)
+                        alert(response.data.message)
+                        // this.props.history.push({
+                        //     pathname: '/admindashboard',
+                        //     search: '?query=dashboard',
+                        //     //state:{data: response.data}
+                        //     state: { data: response.data.roleId }
+                        // })
+                    } else {
+                    }
+                }).catch(err=>{
+                    alert('Error in purchasing the product.Please try again .')
+                })
             }
         });
 
     }
-    getData(user) {
+    getData(product) {
         // let res={
         //     status: 200,
         //     data: {
@@ -68,7 +86,7 @@ export class BuyProduct extends Component {
         //     }
         // }
         return new Promise((resolve, reject) => {
-            axios.post(`${url.url}/login`, user)
+            axios.post(`${url.urlCharan}/buy`, product)
                 .then(res => {
                     resolve(res)
                 }).catch(err => {
@@ -81,26 +99,24 @@ export class BuyProduct extends Component {
         console.log("Inside validate")
         let isValid = true;
         const errors = {
-            accountNoError: '',
-            passwordError: ''
+           ageError:'',
+           nameError:'',
+           emailIdError:'',
+           addressError:'',
+           productIdError:'',
+           panError:''
         }
 
         if (this.state.emailId.indexOf('@') !== -1) {
-            if (this.state.password.length > 4) {
-                isValid = true;
-            } else {
-                isValid = false;
-                errors.passwordError = 'Password should be more than 4 characters'
-            }
         } else {
             isValid = false;
             errors.emailIdError = 'Email Id should be in proper format'
         }
-        if (this.state.emailId === '' || this.state.password === '') {
-            isValid = false;
-            errors.emailIdError = "Email is mandatory field"
-            errors.passwordError = "Password is mandatory field"
-        }
+        // if (this.state.age < 18) {
+        // } else {
+        //     isValid = false;
+        //     errors.ageError = 'You should be atleast 18 year old to purchase products'
+        // }
 
         this.setState({
             ...this.state,
@@ -116,10 +132,10 @@ export class BuyProduct extends Component {
             <div>
                     <h4>Buy</h4>
                 <form className="loginform">
-                    <div className="form-group">
+                    <div >
                         <span className="pull-right text-danger"><small>{this.state.emailIdError}</small></span>
                         <div className="labelinput">
-                            <label htmlFor="emailId">Email Id  </label>&nbsp;
+                            <label htmlFor="emailId">Email Id</label>&nbsp;
                             <input
                                 type="text"
                                 id="emailId"
@@ -143,7 +159,7 @@ export class BuyProduct extends Component {
                         </div>
                        
                     </div>
-                    <div className="form-group">
+                    <div >
                         <span className="pull-right text-danger"><small>{this.state.ageError}</small></span>
                         <div className="labelinput">
                         <label htmlFor="age">Age </label>&nbsp;&nbsp;
@@ -155,7 +171,7 @@ export class BuyProduct extends Component {
                             placeholder="Enter the age" />
                         </div>
                     </div>
-                    <div className="form-group">
+                    <div >
                         <span className="pull-right text-danger"><small>{this.state.addressError}</small></span>
                         <div className="labelinput">
                         <label htmlFor="address">Address </label>&nbsp;&nbsp;
@@ -166,11 +182,10 @@ export class BuyProduct extends Component {
                             placeholder="Enter the address" />
                         </div>
                     </div>
-                    <div className="form-group">
+                    <div >
                         <span className="pull-right text-danger"><small>{this.state.mobileNoError}</small></span>
-                        <br></br>
                         <div className="labelinput">
-                        <label htmlFor="mobileNo">Mobile Number </label>&nbsp;&nbsp;
+                        <label htmlFor="mobileNo">Phone</label>&nbsp;&nbsp;
                         <input
                             type="test"
                             id="mobileNo"
@@ -179,11 +194,10 @@ export class BuyProduct extends Component {
                             placeholder="Enter the mobileNo" />
                         </div>
                     </div>
-                    <div className="form-group">
+                    <div >
                         <span className="pull-right text-danger"><small>{this.state.panError}</small></span>
-                        <br></br>
                         <div className="labelinput">
-                        <label htmlFor="mobileNo">PAN number </label>&nbsp;&nbsp;
+                        <label htmlFor="mobileNo">PAN</label>&nbsp;&nbsp;
                         <input
                             type="text"
                             id="pan"
@@ -192,7 +206,8 @@ export class BuyProduct extends Component {
                             placeholder="Enter the PAN" />
                         </div>
                     </div>
-                    <button id="submit" type="submit" className="but" onClick={this.handleSubmit}>Buy</button>
+                    <br></br>
+                    <button id="submit" type="submit" className="but" onClick={this.handleBuy}>Buy</button>
 
                 </form>
             </div>

@@ -16,7 +16,7 @@ export class Home extends Component {
                         <ProductDetails></ProductDetails>
                     </TabPanel>
                     <TabPanel>
-                            Some Content        
+                            Some        
                     </TabPanel>
                     
                 </Tabs>

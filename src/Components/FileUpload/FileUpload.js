@@ -17,7 +17,9 @@ class FileUpload extends React.Component {
         e.preventDefault() // Stop form submit
         console.log(this.state.file)
         if (this.state.file.name !== 'product_catalog.xlsx') {
-            alert('Only xlsx file format is supported')
+            alert('File name should be  product_catalog')
+        } else if(this.state.file.name.indexOf('xlsx')===-1){
+            alert('Only .xlsx format is supported')
         }
         this.fileUpload(this.state.file).then((response) => {
             console.log(response.data);

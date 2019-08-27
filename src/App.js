@@ -8,6 +8,7 @@ import Header from './Components/Header/Header'
 import ProductDetails from './Components/ProductDetails/ProductDetails';
 import Home from './Components/Home/Home';
 import BuyProduct from './Components/BuyProduct/BuyProduct';
+import Analysis from './Components/Analysis/Analysis';
 
 
 
@@ -44,6 +45,7 @@ class App extends Component {
              <Route path='/productDetails' exact component={ProductDetails} ></Route> 
              <Route path='/home' exact exact component={()=><Home redirect={this.redirect}/>}></Route> 
              <Route path='/buyProduct' exact component={BuyProduct} ></Route> 
+             <Route path='/analysis' exact component={Analysis} ></Route> 
           </Switch> 
          
         </HashRouter>
