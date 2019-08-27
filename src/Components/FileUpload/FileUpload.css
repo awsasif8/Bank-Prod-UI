@@ -1,0 +1,19 @@
+.upload{
+    position: relative;
+    left:30%;
+    width: 20%;
+    text-align: center;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+h2 {
+    color: orangered
+}
+.but{
+  
+    background-color: orangered;
+    height: 30px;
+    width: 90px;
+    color: white;
+    
+}
