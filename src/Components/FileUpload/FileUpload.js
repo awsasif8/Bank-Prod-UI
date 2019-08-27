@@ -21,6 +21,7 @@ class FileUpload extends React.Component {
         }
         this.fileUpload(this.state.file).then((response) => {
             console.log(response.data);
+            alert(`File uploaded successfully`)
         })
     }
     onChange(e) {
@@ -37,6 +38,7 @@ class FileUpload extends React.Component {
             }
             axios.post(`${url.urlDhana}/uploadfile`, formData, config)
                 .then((res) => {
+                    console.log(res)
                     return resolve(res)
                 })
                 .catch(err=>{
@@ -49,10 +51,13 @@ class FileUpload extends React.Component {
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <h2>File Upload</h2>
                 <br></br>
-                <input type="file" onChange={this.onChange} />
-                <button className="but" type="submit">Upload</button>
+                <h4>Upload Product Catalogue</h4>
+                <br></br>
+                <div className="labelinput">
+                <input className="in" type="file" onChange={this.onChange} />
+                <button type="submit">Upload</button>
+                </div>
             </form>
         )
     }

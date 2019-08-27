@@ -42,7 +42,7 @@ export class ProductDetails extends Component {
         // this.fileUpload = this.fileUpload.bind(this)
     }
     componentDidMount() {
-        axios.get(`${url.urlSharath}/productnames`)
+        axios.get(`${url.url}/productnames`)
             .then(res => {
                 console.log("res inside on clicked accordion", res)
                 if (res.status === 200 && res.data.status === "SUCCESS") {
@@ -91,7 +91,7 @@ export class ProductDetails extends Component {
         // this.setState({
         //     productList: this.state.productListDetailed
         // })
-        axios.get(`${url.urlSharath}/productdescription/${item.productId}`)
+        axios.get(`${url.url}/productdescription/${item.productId}`)
             .then(res => {
                 console.log("res inside on clicked accordion", res)
                 if (res.status === 200 && res.data.status === "SUCCESS") {

@@ -12,7 +12,10 @@ export class BuyProduct extends Component {
             age: '',
             productId: '',
             phone: '',
-            address: ''
+            address: '',
+            name:'',
+            pan:'',
+            mobileNo:''
 
         }
         this.handleChange = this.handleChange.bind(this);
@@ -111,13 +114,10 @@ export class BuyProduct extends Component {
         let { t } = this.props;
         return (
             <div>
-                <header >
-                    <h2>Buy</h2>
-                </header>
+                    <h4>Buy</h4>
                 <form className="loginform">
                     <div className="form-group">
                         <span className="pull-right text-danger"><small>{this.state.emailIdError}</small></span>
-                        <br></br>
                         <div className="labelinput">
                             <label htmlFor="emailId">Email Id  </label>&nbsp;
                             <input
@@ -131,23 +131,20 @@ export class BuyProduct extends Component {
                         </div>
                     </div>
                     <div className="form-group">
-                        <span className="pull-right text-danger"><small>{this.state.ageError}</small></span>
-                        <br></br>
-                        
+                        <span className="pull-right text-danger"><small>{this.state.nameError}</small></span>          
                         <div className="labelinput">
-                        <label htmlFor="age">Age </label>&nbsp;&nbsp;
+                        <label htmlFor="name">Name </label>&nbsp;&nbsp;
                         <input
                             type="test"
-                            id="age"
+                            id="name"
                             onChange={this.handleChange}
-                            value={this.state.age}
-                            placeholder="Enter the age" />
+                            value={this.state.name}
+                            placeholder="Enter the name" />
                         </div>
                        
                     </div>
                     <div className="form-group">
                         <span className="pull-right text-danger"><small>{this.state.ageError}</small></span>
-                        <br></br>
                         <div className="labelinput">
                         <label htmlFor="age">Age </label>&nbsp;&nbsp;
                         <input
@@ -158,7 +155,43 @@ export class BuyProduct extends Component {
                             placeholder="Enter the age" />
                         </div>
                     </div>
-                    <br></br><br></br>
+                    <div className="form-group">
+                        <span className="pull-right text-danger"><small>{this.state.addressError}</small></span>
+                        <div className="labelinput">
+                        <label htmlFor="address">Address </label>&nbsp;&nbsp;
+                        <textarea
+                            id="address"
+                            onChange={this.handleChange}
+                            value={this.state.address}
+                            placeholder="Enter the address" />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <span className="pull-right text-danger"><small>{this.state.mobileNoError}</small></span>
+                        <br></br>
+                        <div className="labelinput">
+                        <label htmlFor="mobileNo">Mobile Number </label>&nbsp;&nbsp;
+                        <input
+                            type="test"
+                            id="mobileNo"
+                            onChange={this.handleChange}
+                            value={this.state.mobileNo}
+                            placeholder="Enter the mobileNo" />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <span className="pull-right text-danger"><small>{this.state.panError}</small></span>
+                        <br></br>
+                        <div className="labelinput">
+                        <label htmlFor="mobileNo">PAN number </label>&nbsp;&nbsp;
+                        <input
+                            type="text"
+                            id="pan"
+                            onChange={this.handleChange}
+                            value={this.state.pan}
+                            placeholder="Enter the PAN" />
+                        </div>
+                    </div>
                     <button id="submit" type="submit" className="but" onClick={this.handleSubmit}>Buy</button>
 
                 </form>

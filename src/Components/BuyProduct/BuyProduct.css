@@ -4,13 +4,24 @@
     left:35%;
     width: 30%;
     text-align: center;
-    font-weight: bold
+    font-weight: bold;
+    border: 1px solid orangered;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+.loginform input{
+    width: 60%;
 }
 .but{
     background-color: orangered;
     height: 30px;
     width: 90px;
     color: white;
+    margin-left:30%;
+}
+h4{
+    color: orangered
 }
 .labelinput label{
     

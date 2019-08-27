@@ -10,10 +10,17 @@ h2 {
     color: orangered
 }
 .but{
-  
     background-color: orangered;
     height: 30px;
     width: 90px;
     color: white;
+    margin-left:20%;
+}
+.in{
+    margin-left:50px;
+}
+.labelinput {
     
+    display: inline-block;
+
 }
