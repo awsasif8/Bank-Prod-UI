@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 export class ProductDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            file: null
+            productList: [{
+                productId: 1,
+                productName: "CreditCard"
+            },{
+                productId: 1,
+                productName: "Mutual Funds"
+
+            }]
         }
         // this.onFormSubmit = this.onFormSubmit.bind(this)
         // this.onChange = this.onChange.bind(this)
